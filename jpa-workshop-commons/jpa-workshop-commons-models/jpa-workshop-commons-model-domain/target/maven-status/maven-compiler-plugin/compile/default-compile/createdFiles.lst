@@ -1,0 +1,14 @@
+local/tin/tests/jpa/workshop/model/domain/interfaces/INamed.class
+local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractNamed.class
+local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractIdentifiable.class
+local/tin/tests/jpa/workshop/model/domain/errors/CommonError.class
+local/tin/tests/jpa/workshop/model/domain/exceptions/ServiceException.class
+local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractDomain.class
+local/tin/tests/jpa/workshop/model/domain/interfaces/ICompositeId.class
+local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractEnableable.class
+local/tin/tests/jpa/workshop/model/domain/exceptions/CommonException.class
+local/tin/tests/jpa/workshop/model/domain/interfaces/IEnableable.class
+local/tin/tests/jpa/workshop/model/domain/interfaces/IIdentifiable.class
+local/tin/tests/jpa/workshop/model/domain/exceptions/DAOException.class
+local/tin/tests/jpa/workshop/model/domain/interfaces/IDomain.class
+local/tin/tests/jpa/workshop/model/domain/enums/ErrorCode.class

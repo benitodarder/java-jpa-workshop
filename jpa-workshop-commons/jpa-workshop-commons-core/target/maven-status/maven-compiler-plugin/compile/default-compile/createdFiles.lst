@@ -1,0 +1,8 @@
+local/tin/tests/jpa/common/core/xml/JAXBMarshaller$JAXBMarshallerHolder.class
+local/tin/tests/jpa/common/core/files/ResourcesUtils$ResourcesUtilsHolder.class
+local/tin/tests/jpa/common/core/files/ResourcesUtils.class
+local/tin/tests/jpa/common/core/files/ResourcesUtils$1.class
+local/tin/tests/jpa/common/core/configuration/AbstractDAOConfiguration.class
+local/tin/tests/jpa/common/core/xml/JAXBMarshaller$1.class
+local/tin/tests/jpa/common/core/configuration/AbstractConfiguration.class
+local/tin/tests/jpa/common/core/xml/JAXBMarshaller.class

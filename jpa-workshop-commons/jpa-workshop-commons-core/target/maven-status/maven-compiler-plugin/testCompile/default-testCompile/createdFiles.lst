@@ -1,0 +1,7 @@
+local/tin/tests/jpa/workshop/common/core/xml/Response.class
+local/tin/tests/jpa/workshop/common/core/xml/JAXBMarshallerTest.class
+local/tin/tests/jpa/workshop/common/core/configuration/AbstractDAOConfigurationTest.class
+local/tin/tests/jpa/workshop/common/core/configuration/DAOConfigurationWrapper.class
+local/tin/tests/jpa/workshop/common/core/configuration/AbstractConfigurationTest.class
+local/tin/tests/jpa/workshop/common/core/configuration/AbstractConfigurationWrapper.class
+local/tin/tests/jpa/workshop/common/core/files/ResourcesUtilsTest.class

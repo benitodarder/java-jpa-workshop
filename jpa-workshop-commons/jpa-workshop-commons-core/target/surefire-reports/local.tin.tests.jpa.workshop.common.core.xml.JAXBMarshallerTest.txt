@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: local.tin.tests.jpa.workshop.common.core.xml.JAXBMarshallerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.081 s - in local.tin.tests.jpa.workshop.common.core.xml.JAXBMarshallerTest

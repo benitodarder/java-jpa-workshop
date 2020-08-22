@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AssemblyDAO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jpa-workshop-products-dao-implementation</a> &gt; <a href="index.source.html" class="el_package">local.tin.tests.jpa.workshop.dao.impl</a> &gt; <span class="el_source">AssemblyDAO.java</span></div><h1>AssemblyDAO.java</h1><pre class="source lang-java linenums">package local.tin.tests.jpa.workshop.dao.impl;
+
+import javax.persistence.EntityManagerFactory;
+import local.tin.tests.jpa.workshop.model.data.embeddables.AssemblyId;
+import local.tin.tests.jpa.workshop.model.data.interfaces.IEmbeddable;
+import local.tin.tests.jpa.workshop.model.data.product.Assembly;
+import local.tin.tests.jpa.workshop.model.data.product.Component;
+import local.tin.tests.jpa.workshop.model.data.product.Product;
+import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
+import local.tin.tests.jpa.workshop.model.domain.interfaces.ICompositeId;
+
+
+/**
+ *
+ * @author benito.darder
+ */
+public class AssemblyDAO extends AbstractDAO&lt;local.tin.tests.jpa.workshop.model.domain.product.Assembly, Assembly&gt; {
+
+    public AssemblyDAO(EntityManagerFactory entityManagerFactory) {
+<span class="fc" id="L20">        super(entityManagerFactory);</span>
+<span class="fc" id="L21">    }</span>
+
+    @Override
+    protected Class&lt;Assembly&gt; getDAOClass() {
+<span class="nc" id="L25">        return Assembly.class;</span>
+    }
+
+    @Override
+    protected AssemblyId getEmmbeddedId(ICompositeId domainObject) throws DAOException {
+<span class="fc" id="L30">        AssemblyId embeddable = new AssemblyId();</span>
+<span class="fc" id="L31">        embeddable.setComponentId(((local.tin.tests.jpa.workshop.model.domain.compositeIds.AssemblyId) domainObject).getComponentId());</span>
+<span class="fc" id="L32">        embeddable.setProductId(((local.tin.tests.jpa.workshop.model.domain.compositeIds.AssemblyId) domainObject).getProductId());</span>
+<span class="fc" id="L33">        return embeddable;</span>
+    }
+
+    @Override
+    protected local.tin.tests.jpa.workshop.model.domain.compositeIds.AssemblyId getCompositedId(IEmbeddable dataObject) throws DAOException {
+<span class="fc" id="L38">        local.tin.tests.jpa.workshop.model.domain.compositeIds.AssemblyId compositeId = new local.tin.tests.jpa.workshop.model.domain.compositeIds.AssemblyId();</span>
+<span class="fc" id="L39">        compositeId.setComponentId(((AssemblyId) dataObject).getComponentId());</span>
+<span class="fc" id="L40">        compositeId.setProductId(((AssemblyId) dataObject).getProductId());</span>
+<span class="fc" id="L41">        return compositeId;</span>
+    }
+
+    @Override
+    protected local.tin.tests.jpa.workshop.model.domain.product.Assembly getDomainObjectNewInstance() {
+<span class="nc" id="L46">        return new local.tin.tests.jpa.workshop.model.domain.product.Assembly();</span>
+    }
+
+    @Override
+    protected Assembly getDataObjectNewInstance() {
+<span class="nc" id="L51">        return new Assembly();</span>
+    }
+
+    @Override
+    protected local.tin.tests.jpa.workshop.model.domain.product.Assembly updateDomainObjectDepth0Fields(local.tin.tests.jpa.workshop.model.domain.product.Assembly domainObject, Assembly dataObject) throws DAOException {
+<span class="fc" id="L56">        domainObject.setQuantity(dataObject.getQuantity());</span>
+<span class="fc" id="L57">        return domainObject;</span>
+    }
+
+    @Override
+    protected local.tin.tests.jpa.workshop.model.domain.product.Assembly updateDomainObjectDeeperFields(local.tin.tests.jpa.workshop.model.domain.product.Assembly domainObject, Assembly dataObject, int depth) throws DAOException {
+<span class="fc" id="L62">        ComponentDAO componentDAO = (ComponentDAO) ProductDAOFactory.getInstance().getDAO(Component.class);</span>
+<span class="fc" id="L63">        domainObject.setComponent(componentDAO.getDomainObject(dataObject.getComponent(), DEFAULT_DEPTH_ENTITY));</span>
+<span class="fc" id="L64">        ProductDAO productDAO = (ProductDAO) ProductDAOFactory.getInstance().getDAO(Product.class);</span>
+<span class="fc" id="L65">        domainObject.setProduct(productDAO.getDomainObject(dataObject.getProduct(), DEFAULT_DEPTH_ENTITY));</span>
+<span class="fc" id="L66">        return domainObject;</span>
+    }
+
+    @Override
+    protected Assembly updateDataObjectDepth0Fields(local.tin.tests.jpa.workshop.model.domain.product.Assembly domainObject, Assembly dataObject) throws DAOException {
+<span class="fc" id="L71">        dataObject.setQuantity(domainObject.getQuantity());</span>
+<span class="fc" id="L72">        return dataObject;</span>
+    }
+
+    @Override
+    protected Assembly updateDataObjectDeeperFields(local.tin.tests.jpa.workshop.model.domain.product.Assembly domainObject, Assembly dataObject, int depth) throws DAOException {
+<span class="fc" id="L77">        return dataObject;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.8.201612092310</span></div></body></html>

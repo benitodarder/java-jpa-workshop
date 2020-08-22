@@ -1,0 +1,6 @@
+local/tin/tests/jpa/workshop/dao/impl/AbstractDAOFactoryTest.class
+local/tin/tests/jpa/workshop/dao/impl/BaseFactoryWrapper.class
+local/tin/tests/jpa/workshop/dao/impl/BaseDAOTest.class
+local/tin/tests/jpa/workshop/dao/impl/AbstractDAOTest.class
+local/tin/tests/jpa/workshop/dao/impl/AbstractDAOWrapper.class
+local/tin/tests/jpa/workshop/dao/impl/AbstractDAOWrapperWithEmbeddedId.class
