@@ -1,9 +1,0 @@
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractProduct.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/product/Assembly.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/deserializers/AssemblyDeserializer.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/compositeIds/AssemblyId.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/product/Product.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/deserializers/AssemblyIdDeserializer.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/product/Component.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/product/Unit.java
-/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-domain/src/main/java/local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractNamedProduct.java

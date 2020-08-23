@@ -1,8 +1,0 @@
-local/tin/tests/jpa/workshop/model/data/interfaces/IEnableable.class
-local/tin/tests/jpa/workshop/model/data/abstracts/AbstractEnableable.class
-local/tin/tests/jpa/workshop/model/data/interfaces/INamed.class
-local/tin/tests/jpa/workshop/model/data/interfaces/IIdentifiable.class
-local/tin/tests/jpa/workshop/model/data/interfaces/IDataObject.class
-local/tin/tests/jpa/workshop/model/data/abstracts/AbstractNamed.class
-local/tin/tests/jpa/workshop/model/data/abstracts/AbstractIdentifiable.class
-local/tin/tests/jpa/workshop/model/data/interfaces/IEmbeddable.class
