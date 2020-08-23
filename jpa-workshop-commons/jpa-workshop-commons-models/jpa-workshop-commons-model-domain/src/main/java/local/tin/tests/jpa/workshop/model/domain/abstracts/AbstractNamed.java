@@ -51,6 +51,5 @@ public abstract class AbstractNamed extends AbstractIdentifiable implements INam
         return super.equals(obj);
     }
     
-    
 
 }

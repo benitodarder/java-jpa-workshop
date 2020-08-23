@@ -1,5 +1,6 @@
-package local.tin.tests.jpa.common.core.configuration;
+package local.tin.tests.jpa.workshop.dao.configuration;
 
+import local.tin.tests.jpa.common.core.configuration.AbstractConfiguration;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 
 

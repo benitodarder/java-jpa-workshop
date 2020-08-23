@@ -6,6 +6,6 @@ how to use different JPA providers.
 To change the provider:
 
 * Update the content of persistence.xml with the corresponding sample
-* Un/Comment the corresponding dependencies accordingly with the persistence.xml content
+* Update the content of pom.xml with the correspondig sample accordingly with the persistence.xml content
 
 

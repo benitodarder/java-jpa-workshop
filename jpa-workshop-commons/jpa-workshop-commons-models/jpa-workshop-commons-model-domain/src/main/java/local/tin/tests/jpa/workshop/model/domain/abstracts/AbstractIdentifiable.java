@@ -30,4 +30,6 @@ public abstract class AbstractIdentifiable extends AbstractEnableable implements
         final AbstractIdentifiable other = (AbstractIdentifiable) obj;
         return Objects.equals(this.getId(), other.getId());
     }
+    
+    
 }

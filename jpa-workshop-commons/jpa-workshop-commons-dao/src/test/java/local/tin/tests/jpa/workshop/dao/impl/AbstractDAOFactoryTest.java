@@ -1,9 +1,8 @@
 package local.tin.tests.jpa.workshop.dao.impl;
 
-import local.tin.tests.jpa.workshop.dao.impl.AbstractDAOFactory;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import local.tin.tests.jpa.common.core.configuration.AbstractDAOConfiguration;
+import local.tin.tests.jpa.workshop.dao.configuration.AbstractDAOConfiguration;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.BeforeClass;

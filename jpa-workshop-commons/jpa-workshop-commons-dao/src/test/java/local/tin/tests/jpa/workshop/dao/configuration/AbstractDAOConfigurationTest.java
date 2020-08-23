@@ -1,10 +1,8 @@
-package local.tin.tests.jpa.workshop.common.core.configuration;
+package local.tin.tests.jpa.workshop.dao.configuration;
 
 
-import local.tin.tests.jpa.common.core.configuration.AbstractDAOConfiguration;
 import java.util.HashMap;
 import java.util.Map;
-import local.tin.tests.jpa.common.core.configuration.AbstractDAOConfiguration;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 import org.apache.log4j.Logger;
 import static org.hamcrest.CoreMatchers.equalTo;

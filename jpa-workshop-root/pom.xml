@@ -8,6 +8,7 @@
     <modules>
         <module>../jpa-workshop-commons/jpa-workshop-commons-root</module>
         <module>../jpa-workshop-products/jpa-workshop-products-root</module>
+        <module>../jpa-workshop-copy-values/jpa-workshop-copy-values-root</module>
     </modules>
     <properties>
         <!-- Base -->

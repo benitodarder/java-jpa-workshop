@@ -1,6 +1,5 @@
 package local.tin.tests.jpa.workshop.dao.impl;
 
-import local.tin.tests.jpa.workshop.dao.impl.ProductDAOFactory;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import local.tin.tests.jpa.workshop.dao.ProductDAOConfiguration;

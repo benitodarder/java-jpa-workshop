@@ -20,5 +20,6 @@ public abstract class AbstractEnableable implements IEnableable {
         this.enabled = enabled;
     }    
 
+
     
 }

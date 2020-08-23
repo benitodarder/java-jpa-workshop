@@ -1,4 +1,4 @@
-package local.tin.tests.jpa.workshop.dao;
+package local.tin.tests.jpa.workshop.copy.values.dao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,15 +9,15 @@ import org.apache.log4j.Logger;
  *
  * @author benito.darder
  */
-public class ProductDAOConfiguration extends AbstractDAOConfiguration {
+public class CopyValuesDAOConfiguration extends AbstractDAOConfiguration {
 
-    private static final Logger LOGGER = Logger.getLogger(ProductDAOConfiguration.class);
+    private static final Logger LOGGER = Logger.getLogger(CopyValuesDAOConfiguration.class);
     private static Map<String, String> configurationMap;
 
-    private ProductDAOConfiguration() {
+    private CopyValuesDAOConfiguration() {
     }
 
-    public static synchronized ProductDAOConfiguration getInstance() {
+    public static synchronized CopyValuesDAOConfiguration getInstance() {
 
         if (configurationMap == null) {
             configurationMap = new HashMap<>();
@@ -27,7 +27,7 @@ public class ProductDAOConfiguration extends AbstractDAOConfiguration {
 
     private static class DAOConfigurationConfigurationHolder {
 
-        private static final ProductDAOConfiguration INSTANCE = new ProductDAOConfiguration();
+        private static final CopyValuesDAOConfiguration INSTANCE = new CopyValuesDAOConfiguration();
 
         private DAOConfigurationConfigurationHolder() {
         }
