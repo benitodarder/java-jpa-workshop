@@ -25,3 +25,11 @@ hs_err_pid*
 /target/
 /**/nbactions.xml
 /**/nb-configuration.xml
+/jpa-workshop-commons/jpa-workshop-commons-models/jpa-workshop-commons-model-data/target/
+/jpa-workshop-commons/jpa-workshop-commons-dao/target/
+/jpa-workshop-products/jpa-workshop-products-model-data/target/
+/jpa-workshop-commons/jpa-workshop-commons-models/jpa-workshop-commons-model-domain/target/
+/jpa-workshop-commons/jpa-workshop-commons-core/target/
+/jpa-workshop-products/jpa-workshop-products-dao-implementation/target/
+/jpa-workshop-products/jpa-workshop-products-model-domain/target/
+/jpa-workshop-products/jpa-workshop-products-app/target/

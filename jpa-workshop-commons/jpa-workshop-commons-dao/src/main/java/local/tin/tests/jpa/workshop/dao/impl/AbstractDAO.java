@@ -44,7 +44,7 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
     public AbstractDAO(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }
-
+    
     /**
      * Returns the entity manager factory.
      *
@@ -464,7 +464,18 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
         return id;
     }
 
-    @Override
+    private List<C0> getListOfDomainObjects(List<C1> dataModelResults) throws DAOException {
+        List<C0> results = new ArrayList<>();
+        Iterator<C1> iterator = dataModelResults.iterator();
+        while (iterator.hasNext()) {
+            C1 current = iterator.next();
+            results.add(getDomainObject(current, DEFAULT_DEPTH_ENTITY));
+            iterator.remove();
+        }
+        return results;
+    }
+    
+   @Override
     public C0 create(C0 objectModel) throws DAOException {
         C1 dataClass = getDataObject(objectModel, DEFAULT_DEPTH_ENTITY);
         EntityManager entityManager = null;
@@ -540,18 +551,8 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
     @Override
     public List<C0> retrieveAllByParameters(Map<String, Object> parameters) throws DAOException {
         return retrieveAllByParameters(parameters, null);
-    }
-
-    private List<C0> getListOfDomainObjects(List<C1> dataModelResults) throws DAOException {
-        List<C0> results = new ArrayList<>();
-        Iterator<C1> iterator = dataModelResults.iterator();
-        while (iterator.hasNext()) {
-            C1 current = iterator.next();
-            results.add(getDomainObject(current, DEFAULT_DEPTH_ENTITY));
-            iterator.remove();
-        }
-        return results;
-    }
+    }    
+    
 
     @Override
     public Long getCount() throws DAOException {
@@ -595,4 +596,5 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
         }
         return results;
     }
+        
 }
