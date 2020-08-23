@@ -8,6 +8,7 @@ import local.tin.tests.jpa.common.core.xml.JAXBMarshaller;
 import local.tin.tests.jpa.workshop.dao.ProductDAOConfiguration;
 import local.tin.tests.jpa.workshop.dao.impl.ProductDAOFactory;
 import local.tin.tests.jpa.workshop.dao.impl.UnitDAO;
+import local.tin.tests.jpa.workshop.model.domain.Pagination;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 import local.tin.tests.jpa.workshop.model.domain.product.Unit;
 import org.apache.log4j.Logger;
@@ -29,6 +30,13 @@ public class UnitsApp {
         ProductDAOConfiguration.getInstance().loadProperties(properties);
         UnitDAO productDAO = (UnitDAO) ProductDAOFactory.getInstance().getDAO(Unit.class);
         List<Unit> units = productDAO.retrieveAll();
+        LOGGER.info("We got: " + units.size() + " units");
+        for (Unit current : units) {
+            LOGGER.info(JAXBMarshaller.getInstance().toString(current));
+        }
+        LOGGER.info("Let's paginate! Page size:" + (units.size() / 2) + ", page: 2");
+        Pagination pagination = new Pagination(2, units.size() / 2);
+        units = productDAO.retrieveAll(pagination);
         LOGGER.info("We got: " + units.size() + " units");
         for (Unit current : units) {
             LOGGER.info(JAXBMarshaller.getInstance().toString(current));

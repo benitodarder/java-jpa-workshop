@@ -1,4 +1,5 @@
 local/tin/tests/jpa/workshop/model/domain/interfaces/INamed.class
+local/tin/tests/jpa/workshop/model/domain/Pagination.class
 local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractNamed.class
 local/tin/tests/jpa/workshop/model/domain/abstracts/AbstractIdentifiable.class
 local/tin/tests/jpa/workshop/model/domain/errors/CommonError.class

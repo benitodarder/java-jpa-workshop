@@ -2,6 +2,7 @@ package local.tin.tests.jpa.workshop.dao.interfaces;
 
 import java.util.List;
 import java.util.Map;
+import local.tin.tests.jpa.workshop.model.domain.Pagination;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 
 
@@ -79,5 +80,41 @@ public interface IAbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.doma
      */
     public List<C0> retrieveAllByParameters(Map<String, Object> parameters) throws DAOException;
 
+    /**
+     * Retrieves the total number of elements of the corresponding entity class.
+     * 
+     * @return Long
+     * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
+     */
+    public Long getCount() throws DAOException;
+    
+    /**
+     * From the total number of entries returns the number of pages given the pages size.
+     * 
+     * @param pageSize
+     * @return Long
+     * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
+     */
+    public Long getPages(int pageSize)throws DAOException;
+
+    /**
+     * Returns all the elements from the corresponding page.
+     *
+     * @param pagination Pagination
+     * @return List of domain objects
+     * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
+     */
+    public List<C0> retrieveAll(Pagination pagination) throws DAOException;    
+    
+    /**
+     * Returns the corresponding page with all the elements of the given class that match the
+     * given parameters.
+     *
+     * @param parameters Map of String and Object.
+     * @param pagination Pagination
+     * @return List of domain objects
+     * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
+     */
+    public List<C0> retrieveAllByParameters(Map<String, Object> parameters, Pagination pagination) throws DAOException;
     
 }

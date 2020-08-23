@@ -1,7 +1,0 @@
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/ProductDAOConfigurationTest.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/impl/BaseDAOTest.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/impl/ProductDAOTest.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/impl/ProductDAOFactoryTest.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/impl/UnitDAOTest.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/impl/AssemblyDAOTest.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-dao-implementation/src/test/java/local/tin/tests/jpa/workshop/dao/impl/ComponentDAOTest.java

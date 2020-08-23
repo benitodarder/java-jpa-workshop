@@ -1,3 +1,3 @@
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-commons/jpa-workshop-commons-dao/src/main/java/local/tin/tests/jpa/workshop/dao/impl/AbstractDAOFactory.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-commons/jpa-workshop-commons-dao/src/main/java/local/tin/tests/jpa/workshop/dao/impl/AbstractDAO.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-commons/jpa-workshop-commons-dao/src/main/java/local/tin/tests/jpa/workshop/dao/interfaces/IAbstractDAO.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-commons/jpa-workshop-commons-dao/src/main/java/local/tin/tests/jpa/workshop/dao/impl/AbstractDAOFactory.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-commons/jpa-workshop-commons-dao/src/main/java/local/tin/tests/jpa/workshop/dao/impl/AbstractDAO.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-commons/jpa-workshop-commons-dao/src/main/java/local/tin/tests/jpa/workshop/dao/interfaces/IAbstractDAO.java

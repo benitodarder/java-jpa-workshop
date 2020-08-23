@@ -1,7 +1,0 @@
-local/tin/tests/jpa/workshop/dao/impl/UnitDAOTest.class
-local/tin/tests/jpa/workshop/dao/impl/BaseDAOTest.class
-local/tin/tests/jpa/workshop/dao/impl/ProductDAOFactoryTest.class
-local/tin/tests/jpa/workshop/dao/impl/ProductDAOTest.class
-local/tin/tests/jpa/workshop/dao/impl/AssemblyDAOTest.class
-local/tin/tests/jpa/workshop/dao/impl/ComponentDAOTest.class
-local/tin/tests/jpa/workshop/dao/ProductDAOConfigurationTest.class

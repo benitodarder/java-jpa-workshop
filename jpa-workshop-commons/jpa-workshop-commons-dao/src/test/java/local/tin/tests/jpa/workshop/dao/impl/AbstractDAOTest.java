@@ -1,6 +1,5 @@
 package local.tin.tests.jpa.workshop.dao.impl;
 
-import local.tin.tests.jpa.workshop.dao.impl.AbstractDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
 import local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable;
+import local.tin.tests.jpa.workshop.model.domain.Pagination;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 import local.tin.tests.jpa.workshop.model.domain.interfaces.ICompositeId;
 import org.apache.log4j.Logger;
@@ -42,6 +42,9 @@ import static org.mockito.Mockito.never;
 @PrepareForTest({Logger.class, EntityManager.class, IllegalArgumentException.class, IIdentifiable.class})
 public class AbstractDAOTest extends BaseDAOTest {
 
+    private static final int PAGE = 2;    
+    private static final int PAGE_SIZE = 17;
+    private static final int TOTAL_COUNT = 666;    
     public static final String QUERY_PREFIX = "select e from IIdentifiable e";
     public static final String QUERY_SUFIX_01 = " where e.p1 = :p1 and e.p2 = :p2";
     public static final String QUERY_SUFIX_02 = " where e.p2 = :p2 and e.p1 = :p1";
@@ -53,13 +56,12 @@ public class AbstractDAOTest extends BaseDAOTest {
     private static Logger mockedLogger;
     private EntityTransaction mockedEntityTransaction;
     private AbstractDAO dao;
+    private         Pagination pagination;
 
     @BeforeClass
     public static void setUpClass() {
         BaseDAOTest.setUpClass();
         mockedLogger = mock(Logger.class);
-        PowerMockito.mockStatic(Logger.class);
-        when(Logger.getLogger(AbstractDAO.class)).thenReturn(mockedLogger);
         mockedAbstractDataObject = mock(IIdentifiable.class);
         mockedAbstractDomainObject = mock(local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable.class);
         mockedICompositeId = mock(local.tin.tests.jpa.workshop.model.domain.interfaces.ICompositeId.class);
@@ -69,11 +71,13 @@ public class AbstractDAOTest extends BaseDAOTest {
     @Before
     public void setUp() {
         setUpBaseMocks();
+        PowerMockito.mockStatic(Logger.class);
+        when(Logger.getLogger(AbstractDAO.class)).thenReturn(mockedLogger);        
         mockedEntityTransaction = mock(EntityTransaction.class);
         when(mockedEntityManager.getTransaction()).thenReturn(mockedEntityTransaction);
         dao = new AbstractDAOWrapperWithEmbeddedId(mockedEntityManagerFactory);
         reset(mockedLogger);
-
+        pagination = new Pagination(PAGE,PAGE_SIZE);        
     }
 
     @Test
@@ -356,7 +360,7 @@ public class AbstractDAOTest extends BaseDAOTest {
         when(mockedTypedQuery.setParameter("p1", "o1")).thenReturn(mockedTypedQuery);
         when(mockedTypedQuery.setParameter("p2", 4)).thenReturn(mockedTypedQuery);
 
-        dao.findByParameters(mockedEntityManager, parameters);
+        dao.findByParameters(mockedEntityManager, parameters, null);
 
         verify(mockedEntityManager).createQuery(anyString());
     }
@@ -366,7 +370,7 @@ public class AbstractDAOTest extends BaseDAOTest {
         Query mockedTypedQuery = mock(Query.class);
         when(mockedEntityManager.createQuery(QUERY_PREFIX)).thenReturn(mockedTypedQuery);
 
-        dao.findByParameters(mockedEntityManager, null);
+        dao.findByParameters(mockedEntityManager, null, null);
 
         verify(mockedEntityManager).createQuery(QUERY_PREFIX);
     }
@@ -376,7 +380,7 @@ public class AbstractDAOTest extends BaseDAOTest {
         Query mockedTypedQuery = mock(Query.class);
         when(mockedEntityManager.createQuery(QUERY_PREFIX)).thenReturn(mockedTypedQuery);
 
-        dao.findByParameters(mockedEntityManager, new HashMap<String, Object>());
+        dao.findByParameters(mockedEntityManager, new HashMap<String, Object>(), null);
 
         verify(mockedEntityManager).createQuery(QUERY_PREFIX);
     }
@@ -392,7 +396,7 @@ public class AbstractDAOTest extends BaseDAOTest {
         List<IIdentifiable> result = new ArrayList<>();
         when(mockedTypedQuery.getResultList()).thenReturn(result);
 
-        List<IIdentifiable> list = dao.findByParameters(mockedEntityManager, parameters);
+        List<IIdentifiable> list = dao.findByParameters(mockedEntityManager, parameters, null);
 
         assertThat(list, equalTo(result));
     }
@@ -516,7 +520,6 @@ public class AbstractDAOTest extends BaseDAOTest {
         assertThat(result, equalTo(mockedAbstractDomainObject));
     }
 
-//A 
 
     @Test
     public void delete_removes_object() throws DAOException {
@@ -530,7 +533,7 @@ public class AbstractDAOTest extends BaseDAOTest {
     }
     
     @Test
-    public void retrieveAll_returns_expected_query() throws DAOException {
+    public void retrieveAll_returns_expected_result() throws DAOException {
         Query mockedTypedQuery = mock(Query.class);
         when(mockedEntityManager.createQuery(QUERY_PREFIX)).thenReturn(mockedTypedQuery);
         List<local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable> dataResults = new ArrayList<>();
@@ -552,7 +555,77 @@ public class AbstractDAOTest extends BaseDAOTest {
         local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable result = dao.update(mockedAbstractDomainObject);
 
         verify(mockedEntityManager).merge(mockedAbstractDataObject);
+    }  
+    
+    @Test
+    public void getCount_returns_expected_value() throws DAOException {
+        Query mockedTypedQuery = mock(Query.class);
+        String query = AbstractDAO.COUNT_QUERY + local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable.class.getSimpleName() + AbstractDAO.QUERIES_ENTITY_ALIAS;
+        when(mockedEntityManager.createQuery(query)).thenReturn(mockedTypedQuery);
+        when(mockedTypedQuery.getSingleResult()).thenReturn(new Long(TOTAL_COUNT));
+        
+        Long result = dao.getCount();
+
+        assertThat(result, equalTo(new Long(TOTAL_COUNT)));
+    }     
+    
+    @Test
+    public void getPages_returns_expected_value() throws DAOException {
+        Query mockedTypedQuery = mock(Query.class);
+        String query = AbstractDAO.COUNT_QUERY + local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable.class.getSimpleName() + AbstractDAO.QUERIES_ENTITY_ALIAS;
+        when(mockedEntityManager.createQuery(query)).thenReturn(mockedTypedQuery);
+        when(mockedTypedQuery.getSingleResult()).thenReturn(new Long(TOTAL_COUNT));
+        
+        Long result = dao.getPages(PAGE_SIZE);
+
+        assertThat(result, equalTo(new Long((TOTAL_COUNT / PAGE_SIZE) + 1)));
+    }     
+
+    @Test
+    public void findByParameters_without_parameters_assigns_pagination_when_not_null() throws DAOException {
+        pagination = new Pagination(PAGE,PAGE_SIZE);
+        Query mockedTypedQuery = mock(Query.class);
+        when(mockedEntityManager.createQuery(QUERY_PREFIX)).thenReturn(mockedTypedQuery);
+
+        dao.findByParameters(mockedEntityManager, null, pagination);
+
+        verify(mockedTypedQuery).setFirstResult((pagination.getPage() - 1) * pagination.getPageSize());
+        verify(mockedTypedQuery).setMaxResults(pagination.getPageSize());
+    }  
+    
+    @Test
+    public void findByParameters_with_parameters_assigns_pagination() throws DAOException {
+        pagination = new Pagination(PAGE,PAGE_SIZE);
+        Map<String, Object> parameters = getParametersMap();
+        Query mockedTypedQuery = mock(Query.class);
+        when(mockedEntityManager.createQuery(QUERY_PREFIX + QUERY_SUFIX_01)).thenReturn(mockedTypedQuery);
+        when(mockedEntityManager.createQuery(QUERY_PREFIX + QUERY_SUFIX_02)).thenReturn(mockedTypedQuery);
+        when(mockedTypedQuery.setParameter("p1", "o1")).thenReturn(mockedTypedQuery);
+        when(mockedTypedQuery.setParameter("p2", 4)).thenReturn(mockedTypedQuery);
+        List<IIdentifiable> result = new ArrayList<>();
+        when(mockedTypedQuery.getResultList()).thenReturn(result);
+
+        List<IIdentifiable> list = dao.findByParameters(mockedEntityManager, parameters, pagination);
+
+        verify(mockedTypedQuery).setFirstResult((pagination.getPage() - 1) * pagination.getPageSize());
+        verify(mockedTypedQuery).setMaxResults(pagination.getPageSize());
     }    
+    
+
+    @Test
+    public void retrieveAll_with_pagination_assigns() throws DAOException {
+        pagination = new Pagination(PAGE,PAGE_SIZE);
+        Query mockedTypedQuery = mock(Query.class);
+        when(mockedEntityManager.createQuery(QUERY_PREFIX)).thenReturn(mockedTypedQuery);
+        List<local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable> dataResults = new ArrayList<>();
+        dataResults.add(mockedAbstractDataObject);
+        when(mockedTypedQuery.getResultList()).thenReturn(dataResults);
+        
+        List<local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable> results = dao.retrieveAll(pagination);
+
+        verify(mockedTypedQuery).setFirstResult((pagination.getPage() - 1) * pagination.getPageSize());
+        verify(mockedTypedQuery).setMaxResults(pagination.getPageSize());
+    }     
 }
 
 class AbstractDAOWrapperWithEmbeddedId extends AbstractDAO<local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable, local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable> {

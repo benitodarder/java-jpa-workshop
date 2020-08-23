@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
 import local.tin.tests.jpa.workshop.dao.interfaces.IAbstractDAO;
 import local.tin.tests.jpa.workshop.model.data.interfaces.IEmbeddable;
+import local.tin.tests.jpa.workshop.model.domain.Pagination;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 import local.tin.tests.jpa.workshop.model.domain.interfaces.ICompositeId;
 import org.apache.log4j.Logger;
@@ -23,17 +24,22 @@ import org.apache.log4j.Logger;
  * @param <C0>
  * @param <C1>
  */
-public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable, C1 extends local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable>  implements IAbstractDAO<C0> {
-    
-    
+public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable, C1 extends local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable> implements IAbstractDAO<C0> {
+
+    public static final String COUNT_QUERY = "Select count(e) from ";
+    public static final String FINDALL_ENTITY_ATTRIBUTE_EQUAL = " = :";
+    public static final String QUERIES_ENTITY_ALIAS = " e";
+    public static final String FINDALL_ENTITY_ALIAS_CONDITION = QUERIES_ENTITY_ALIAS + ".";
+    public static final String FINDALL_AND_CLAUSE = " and";
+    public static final String FINDALL_WHERE = " where";
+    public static final String FINDALL_QUERY_PREFIX = "select e from ";
     public static final int DEFAULT_DEPTH_ENTITY = 1;
     public static final int DEFAULT_DEPTH_ID = 0;
-    public static final String COULD_NOT_PARSE_STRING_INTO_JAVASQL_DATE = "Could not parse string into java.sql.Date";    
+    public static final String COULD_NOT_PARSE_STRING_INTO_JAVASQL_DATE = "Could not parse string into java.sql.Date";
     public static final String UNEXPECTED_RUNTIME_EXCEPTION_MESSAGE_PREFIX = " unexpected RuntimeException: ";
-    public static final String NOT_SUPPORTED_YET = "Not supported yet.";    
+    public static final String NOT_SUPPORTED_YET = "Not supported yet.";
     private static final Logger LOGGER = Logger.getLogger(AbstractDAO.class);
     private final EntityManagerFactory entityManagerFactory;
-    
 
     public AbstractDAO(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
@@ -75,63 +81,63 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
 
     /**
      * Returns a new domain model inistance.
-     * 
+     *
      * @return C0
      */
     protected abstract C0 getDomainObjectNewInstance();
-    
+
     /**
      * Returns a new data model inistance.
-     * 
+     *
      * @return C1
      */
     protected abstract C1 getDataObjectNewInstance();
-    
+
     /**
      * Assigns depth 0 fields from data model to domain model
-     * 
+     *
      * @param domainObject C0
      * @param dataObject C1
      * @return C0
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
     protected abstract C0 updateDomainObjectDepth0Fields(C0 domainObject, C1 dataObject) throws DAOException;
-    
+
     /**
      * Assigns fields from data model to domain model at given depth
-     * 
+     *
      * @param domainObject C0
      * @param dataObject C1
      * @param depth int
      * @return C0
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
-    protected abstract C0 updateDomainObjectDeeperFields(C0 domainObject, C1 dataObject, int depth) throws DAOException;    
-    
+    protected abstract C0 updateDomainObjectDeeperFields(C0 domainObject, C1 dataObject, int depth) throws DAOException;
+
     /**
      * Assigns depth 0 fields from data model to domain model
-     * 
+     *
      * @param domainObject C0
      * @param dataObject C1
      * @return C1
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
     protected abstract C1 updateDataObjectDepth0Fields(C0 domainObject, C1 dataObject) throws DAOException;
-    
+
     /**
      * Assigns fields from data model to domain model at given depth
-     * 
+     *
      * @param domainObject C0
      * @param dataObject C1
      * @param depth int
      * @return C1
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
-    protected abstract C1 updateDataObjectDeeperFields(C0 domainObject, C1 dataObject, int depth) throws DAOException;      
+    protected abstract C1 updateDataObjectDeeperFields(C0 domainObject, C1 dataObject, int depth) throws DAOException;
 
     /**
      * Assigns common fields.
-     * 
+     *
      * @param domainObject C0
      * @param dataObject C1
      * @return C0
@@ -141,10 +147,10 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
         domainObject.setEnabled(dataObject.isEnabled());
         return updateDomainObjectId(dataObject, domainObject);
     }
-    
+
     /**
      * Assigns common fields.
-     * 
+     *
      * @param domainObject C0
      * @param dataObject C1
      * @return C0
@@ -153,8 +159,8 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
     protected C1 updateDataCommonFields(C0 domainObject, C1 dataObject) throws DAOException {
         dataObject.setEnabled(domainObject.isEnabled());
         return updateDataObjectId(dataObject, domainObject);
-    }    
-    
+    }
+
     /**
      * Returns a domain object filled with depth.
      *
@@ -192,7 +198,7 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * </ol>
      *
      * Currently this parameter is ignored, while pending to check suitability
-     * 
+     *
      * @param domainObject Domain class object
      * @param depth
      * @return Domain class object
@@ -245,11 +251,11 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
             dataObject.setId(domainObject.getId());
         }
         return dataObject;
-    }    
-    
+    }
+
     /**
-     * Creates the corresponding IEmbeddable from the given ICompositeId.
-     * This ICompositeId matches the DAO class:
+     * Creates the corresponding IEmbeddable from the given ICompositeId. This
+     * ICompositeId matches the DAO class:
      *
      * @param domainObject ICompositeId
      * @return IEmbedabble
@@ -260,8 +266,8 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
     }
 
     /**
-     * Creates the corresponding ICompositeId from the given IEmbeddable.
-     * This ICompositeId matches the DAO class:
+     * Creates the corresponding ICompositeId from the given IEmbeddable. This
+     * ICompositeId matches the DAO class:
      *
      * @param dataObject IEmbeddable
      * @return ICompositeId
@@ -270,7 +276,7 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
     protected ICompositeId getCompositedId(IEmbeddable dataObject) throws DAOException {
         throw new UnsupportedOperationException(NOT_SUPPORTED_YET + " in class " + getDAOClass().getCanonicalName());
     }
-    
+
     /**
      * Returns a list of entities matching the given parameters.
      *
@@ -279,7 +285,7 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * @return List of Data class model
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
-    protected List<C1> findByParameters(EntityManager entityManager, Map<String, Object> parameters) throws DAOException {
+    protected List<C1> findByParameters(EntityManager entityManager, Map<String, Object> parameters, Pagination pagination) throws DAOException {
         List<C1> resultList = new ArrayList<>();
         String queryString = null;
         try {
@@ -289,6 +295,10 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
                 for (Map.Entry current : parameters.entrySet()) {
                     typedQuery.setParameter((String) current.getKey(), current.getValue());
                 }
+            }
+            if (pagination != null) {
+                typedQuery.setFirstResult((pagination.getPage() - 1) * pagination.getPageSize());
+                typedQuery.setMaxResults(pagination.getPageSize());
             }
             resultList = typedQuery.getResultList();
         } catch (IllegalArgumentException iae) {
@@ -305,20 +315,20 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
     protected List<C1> findAll(EntityManager entityManager) throws DAOException {
-        return findByParameters(entityManager, null);
+        return findByParameters(entityManager, null, null);
     }
 
     private String getQueryStringWithParameters(Map<String, Object> parameters) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("select e from ").append(getDAOClass().getSimpleName()).append(" e");
+        stringBuilder.append(FINDALL_QUERY_PREFIX).append(getDAOClass().getSimpleName()).append(QUERIES_ENTITY_ALIAS);
         if (parameters != null && !parameters.isEmpty()) {
-            stringBuilder.append(" where");
+            stringBuilder.append(FINDALL_WHERE);
             boolean firstDone = false;
             for (String current : parameters.keySet()) {
                 if (firstDone) {
-                    stringBuilder.append(" and");
+                    stringBuilder.append(FINDALL_AND_CLAUSE);
                 }
-                stringBuilder.append(" e.").append(current).append(" = :").append(current.replaceAll("\\.", ""));
+                stringBuilder.append(FINDALL_ENTITY_ALIAS_CONDITION).append(current).append(FINDALL_ENTITY_ATTRIBUTE_EQUAL).append(current.replaceAll("\\.", ""));
                 firstDone = true;
             }
 
@@ -333,7 +343,6 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * @param dataClass Data class object
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
-    
     protected void persist(EntityManager entityManager, C1 dataClass) throws DAOException {
         EntityTransaction entityTransaction = null;
         try {
@@ -408,7 +417,7 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
 
     /**
      * Removes the data class attached to the given entity manager.Merges the
- object before removal.
+     * object before removal.
      *
      * @param entityManager
      * @param dataClass Data class object
@@ -479,7 +488,7 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
             C1 c1 = findById(entityManager, getEmbeddedIdWhenNeeded(id));
             if (c1 != null) {
                 c0 = getDomainObject(c1, DEFAULT_DEPTH_ENTITY);
-            } 
+            }
         } finally {
             if (entityManager != null) {
                 entityManager.close();
@@ -527,21 +536,10 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
     public List<C0> retrieveAll() throws DAOException {
         return retrieveAllByParameters(null);
     }
-    
+
     @Override
     public List<C0> retrieveAllByParameters(Map<String, Object> parameters) throws DAOException {
-        List<C0> results = new ArrayList<>();
-        EntityManager entityManager = null;
-        try {
-            entityManager = getEntityManager();
-            List<C1> dataModelResults = findByParameters(entityManager, parameters);
-            results = getListOfDomainObjects(dataModelResults);
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }            
-        }
-        return results;
+        return retrieveAllByParameters(parameters, null);
     }
 
     private List<C0> getListOfDomainObjects(List<C1> dataModelResults) throws DAOException {
@@ -553,7 +551,48 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
             iterator.remove();
         }
         return results;
-    }    
+    }
 
-    
+    @Override
+    public Long getCount() throws DAOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(COUNT_QUERY).append(getDAOClass().getSimpleName()).append(QUERIES_ENTITY_ALIAS);
+        EntityManager entityManager = null;
+        Long result = null;
+        try {
+            entityManager = getEntityManager();
+            Query typedQuery = entityManager.createQuery(stringBuilder.toString());
+            result = (Long) typedQuery.getSingleResult();
+        } catch (IllegalArgumentException iae) {
+            throw new DAOException(getExceptionMessage(iae) + ", for count all query string: " + stringBuilder.toString(), iae);
+        }
+        return result;
+    }
+
+    @Override
+    public Long getPages(int pageSize) throws DAOException {
+        Long count = getCount();
+        return (count / pageSize) + 1;
+    }
+
+    @Override
+    public List<C0> retrieveAll(Pagination pagination) throws DAOException {
+        return retrieveAllByParameters(null, pagination);
+    }
+
+    @Override
+    public List<C0> retrieveAllByParameters(Map<String, Object> parameters, Pagination pagination) throws DAOException {
+        List<C0> results = new ArrayList<>();
+        EntityManager entityManager = null;
+        try {
+            entityManager = getEntityManager();
+            List<C1> dataModelResults = findByParameters(entityManager, parameters, pagination);
+            results = getListOfDomainObjects(dataModelResults);
+        } finally {
+            if (entityManager != null) {
+                entityManager.close();
+            }
+        }
+        return results;
+    }
 }

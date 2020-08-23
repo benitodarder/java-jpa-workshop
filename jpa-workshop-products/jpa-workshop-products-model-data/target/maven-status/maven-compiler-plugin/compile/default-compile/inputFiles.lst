@@ -1,5 +1,5 @@
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Component.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Product.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Assembly.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/embeddables/AssemblyId.java
-/home/benitodarder/Development/java/maven/eclipselink-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Unit.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Component.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Unit.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Product.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/embeddables/AssemblyId.java
+/home/benitodarder/Development/gitHub/benitodarder/05/jpa-workshop/jpa-workshop-products/jpa-workshop-products-model-data/src/main/java/local/tin/tests/jpa/workshop/model/data/product/Assembly.java
