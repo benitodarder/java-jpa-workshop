@@ -6,7 +6,9 @@ A colleague needed a sample application to verify how to copy values from one ta
 	 -> MasterFromBase
 	 -> SecondaryFromBase
 	 
-This project also shows how not all providers implement all JPA features in the same way. 
+This project also shows how not all providers implement all JPA required features in the same way. 
+
+	- About hierarchical model: https://docs.oracle.com/javaee/7/api/javax/persistence/DiscriminatorColumn.html
 
 	- Hibernate do not require a DiscriminatorColumn
 	
