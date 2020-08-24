@@ -3,43 +3,28 @@ package local.tin.tests.jpa.workshop.copy.values.model.data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import local.tin.tests.jpa.workshop.model.data.abstracts.AbstractNamed;
 
 /**
  *
  * @author benitodarder
  */
 @Entity
-@Table(name = "SECONDARY")
-public class Secondary extends AbstractNamed {
+@Table(name = "SECONDARY_FROM_BASE")
+@PrimaryKeyJoinColumn(name = "ID")
+public class SecondaryFromBase extends Base { 
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Column(name = "VALUE02")
     private String value02;
     @Column(name = "VALUE03")
     private Double value03;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "masterId", referencedColumnName = "id")
-    private Master master;
-            
-    @Override
-    public Object getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Object id) {
-        this.id = (Integer) id;
-    }
-
+    private MasterFromBase masterFromBase; 
+    
     public String getValue02() {
         return value02;
     }
@@ -56,14 +41,14 @@ public class Secondary extends AbstractNamed {
         this.value03 = value03;
     }
 
-    public Master getMaster() {
-        return master;
+    public MasterFromBase getMasterFromBase() {
+        return masterFromBase;
     }
 
-    public void setMaster(Master master) {
-        this.master = master;
+    public void setMasterFromBase(MasterFromBase master) {
+        this.masterFromBase = master;
     }
-    
+
     
     
 }

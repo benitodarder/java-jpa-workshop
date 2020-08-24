@@ -50,6 +50,11 @@ public abstract class AbstractNamed extends AbstractIdentifiable implements INam
         }        
         return super.equals(obj);
     }
+
+    @Override
+    public String toString() {
+        return "AbstractNamed{" + "name=" + name + ". " + super.toString() + '}';
+    }
     
 
 }

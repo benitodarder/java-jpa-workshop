@@ -20,6 +20,11 @@ public abstract class AbstractEnableable implements IEnableable {
         this.enabled = enabled;
     }    
 
+    @Override
+    public String toString() {
+        return "AbstractEnableable{" + "enabled=" + enabled + '}';
+    }
+
 
     
 }

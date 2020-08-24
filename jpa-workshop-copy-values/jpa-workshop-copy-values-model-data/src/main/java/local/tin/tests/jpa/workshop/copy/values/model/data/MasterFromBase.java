@@ -5,43 +5,29 @@ import java.util.HashSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import local.tin.tests.jpa.workshop.model.data.abstracts.AbstractNamed;
 
 /**
  *
  * @author benitodarder
  */
 @Entity
-@Table(name = "MASTER")
-public class Master extends AbstractNamed {
+@Table(name = "MASTER_FROM_BASE")
+@PrimaryKeyJoinColumn(name = "ID")
+public class MasterFromBase extends Base { 
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    
     @Column(name = "VALUE01")
     private Double value01;
     @Column(name = "VALUE02")
     private String value02;
     @Column(name = "VALUE03")
     private Double value03;
-    @OneToMany(mappedBy = "master", fetch = FetchType.LAZY)
-    private Collection<Secondary> secondarys;    
-
-    @Override
-    public Object getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Object id) {
-        this.id = (Integer) id;
-    }
-
+    @OneToMany(mappedBy = "masterFromBase", fetch = FetchType.LAZY)
+    private Collection<SecondaryFromBase> secondaryFromBases;       
+ 
     public Double getValue01() {
         return value01;
     }
@@ -66,17 +52,15 @@ public class Master extends AbstractNamed {
         this.value03 = value03;
     }
 
-    public Collection<Secondary> getSecondarys() {
-        if (secondarys == null) {
-            secondarys = new HashSet<>();
+    public Collection<SecondaryFromBase> getSecondaryFromBases() {
+        if (secondaryFromBases == null) {
+            secondaryFromBases = new HashSet<>();
         }
-        return secondarys;
+        return secondaryFromBases;
     }
 
-    public void setSecondarys(Collection<Secondary> secondarys) {
-        this.secondarys = secondarys;
+    public void setSecondaryFromBases(Collection<SecondaryFromBase> secondaryFromBases) {
+        this.secondaryFromBases = secondaryFromBases;
     }
-    
-    
     
 }
