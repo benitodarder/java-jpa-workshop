@@ -33,6 +33,7 @@ public class ProductsApp {
         for (Product current : products) {
             LOGGER.info(JAXBMarshaller.getInstance().toString(current));
         }
+        ProductDAOFactory.getInstance().closeEntityManagerFactory();
         LOGGER.info("That's all folks!");
     }
 

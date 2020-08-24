@@ -3,7 +3,6 @@ package local.tin.tests.jpa.workshop.copy.values.model.data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -21,7 +20,7 @@ import local.tin.tests.jpa.workshop.model.data.abstracts.AbstractNamed;
 public abstract class Base extends AbstractNamed {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "base_sequence_generator")
+    @GeneratedValue(generator = "base_sequence_generator")
     @SequenceGenerator(name = "base_sequence_generator", sequenceName = "seq_base_Id")
     private Integer id;
     @Column(name = "COMMONVALUE")

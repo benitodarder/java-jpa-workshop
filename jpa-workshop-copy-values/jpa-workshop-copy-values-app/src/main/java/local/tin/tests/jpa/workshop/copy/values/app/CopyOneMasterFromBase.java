@@ -38,6 +38,7 @@ public class CopyOneMasterFromBase {
                 secondary.setName("SecondaryFromBase of " + master.getName());
                 secondary.setValue02(master.getValue02());
                 secondary.setValue03(master.getValue03());
+                secondary.setCommonValue(master.getCommonValue());
                 SecondaryFromBaseDAO secondaryDAO = (SecondaryFromBaseDAO) CopyValuesDAOFactory.getInstance().getDAO(SecondaryFromBase.class);
                 secondaryDAO.create(secondary);
                 List<SecondaryFromBase> products = secondaryDAO.retrieveAll();
@@ -48,6 +49,7 @@ public class CopyOneMasterFromBase {
             } else {
                 LOGGER.info("Could not find a MasterFromBase with id: " + args[0]);
             }
+            CopyValuesDAOFactory.getInstance().closeEntityManagerFactory();
         } else {
             LOGGER.info("CopyOneMasterFromBase <id to copy>");
         }

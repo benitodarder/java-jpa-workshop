@@ -48,6 +48,7 @@ public class CopyOneMaster {
             } else {
                 LOGGER.info("Could not find a Master with id: " + args[0]);
             }
+            CopyValuesDAOFactory.getInstance().closeEntityManagerFactory();
         } else {
             LOGGER.info("CopyOneMaster <id to copy>");
         }

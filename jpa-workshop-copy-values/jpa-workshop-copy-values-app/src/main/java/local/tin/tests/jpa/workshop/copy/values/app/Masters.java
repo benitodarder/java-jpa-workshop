@@ -32,6 +32,7 @@ public class Masters {
         for (Master current : products) {
             LOGGER.info(current);
         }
+        CopyValuesDAOFactory.getInstance().closeEntityManagerFactory();
         LOGGER.info("That's all folks!");
     }
 

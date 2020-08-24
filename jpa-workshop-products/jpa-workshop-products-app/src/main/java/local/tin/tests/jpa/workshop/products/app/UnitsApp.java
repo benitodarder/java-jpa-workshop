@@ -41,6 +41,7 @@ public class UnitsApp {
         for (Unit current : units) {
             LOGGER.info(JAXBMarshaller.getInstance().toString(current));
         }
+        ProductDAOFactory.getInstance().closeEntityManagerFactory();
         LOGGER.info("That's all folks!");
     }
 
