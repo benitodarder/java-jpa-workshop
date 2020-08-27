@@ -144,7 +144,6 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
     protected C0 updateDomainCommonFields(C0 domainObject, C1 dataObject) throws DAOException {
-        domainObject.setEnabled(dataObject.isEnabled());
         return updateDomainObjectId(dataObject, domainObject);
     }
 
@@ -157,7 +156,6 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
     protected C1 updateDataCommonFields(C0 domainObject, C1 dataObject) throws DAOException {
-        dataObject.setEnabled(domainObject.isEnabled());
         return updateDataObjectId(dataObject, domainObject);
     }
 

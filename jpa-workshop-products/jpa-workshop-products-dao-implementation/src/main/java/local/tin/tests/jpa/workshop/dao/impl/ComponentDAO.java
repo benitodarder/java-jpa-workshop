@@ -11,7 +11,7 @@ import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
  *
  * @author benito.darder
  */
-public class ComponentDAO extends AbstractDAO<local.tin.tests.jpa.workshop.model.domain.product.Component, Component> {
+public class ComponentDAO extends AbstractEnableableDAO<local.tin.tests.jpa.workshop.model.domain.product.Component, Component> {
 
     public ComponentDAO(EntityManagerFactory entityManagerFactory) {
         super(entityManagerFactory);

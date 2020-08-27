@@ -53,15 +53,12 @@ public class AbstractDAOTest extends BaseDAOTest {
     protected static local.tin.tests.jpa.workshop.model.domain.interfaces.ICompositeId mockedICompositeId;
     protected static local.tin.tests.jpa.workshop.model.data.interfaces.IEmbeddable mockedEmbeddable;
     private static final String LOCALIZED_MESSAGE = "Fai un sol de caralho";
-    private static Logger mockedLogger;
-    private EntityTransaction mockedEntityTransaction;
     private AbstractDAO dao;
     private         Pagination pagination;
 
     @BeforeClass
     public static void setUpClass() {
         BaseDAOTest.setUpClass();
-        mockedLogger = mock(Logger.class);
         mockedAbstractDataObject = mock(IIdentifiable.class);
         mockedAbstractDomainObject = mock(local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable.class);
         mockedICompositeId = mock(local.tin.tests.jpa.workshop.model.domain.interfaces.ICompositeId.class);
@@ -404,7 +401,8 @@ public class AbstractDAOTest extends BaseDAOTest {
     @Test
     public void updateDataObjectId_assings_atomic_id() throws DAOException {
         when(mockedAbstractDomainObject.getId()).thenReturn(ID);
-
+        reset(mockedAbstractDataObject);
+        
         dao.updateDataObjectId(mockedAbstractDataObject, mockedAbstractDomainObject);
 
         verify(mockedAbstractDataObject).setId(ID);
@@ -422,10 +420,11 @@ public class AbstractDAOTest extends BaseDAOTest {
     @Test
     public void updateDomainObjectId_assings_atomic_id() throws DAOException {
         when(mockedAbstractDataObject.getId()).thenReturn(ID);
-
+        reset(mockedAbstractDataObject);
+        
         dao.updateDomainObjectId(mockedAbstractDataObject, mockedAbstractDomainObject);
 
-        verify(mockedAbstractDataObject).setId(ID);
+        verify(mockedAbstractDomainObject).setId(ID);
     }
 
     @Test
@@ -444,23 +443,25 @@ public class AbstractDAOTest extends BaseDAOTest {
 
         assertThat(result, equalTo(mockedLogger));
     }
-
+    
     @Test
     public void updateDomainCommonFields_assigns_fields() throws DAOException {
-        when(mockedAbstractDataObject.isEnabled()).thenReturn(true);
-
+        when(mockedAbstractDataObject.getId()).thenReturn(ID);
+        reset(mockedAbstractDomainObject);
+        
         dao.updateDomainCommonFields(mockedAbstractDomainObject, mockedAbstractDataObject);
 
-        verify(mockedAbstractDomainObject).setEnabled(true);
+        verify(mockedAbstractDomainObject).setId(ID);
     }
 
     @Test
     public void updateDataCommonFields_assigns_fields() throws DAOException {
-        when(mockedAbstractDomainObject.isEnabled()).thenReturn(true);
-
+        when(mockedAbstractDomainObject.getId()).thenReturn(ID);
+        reset(mockedAbstractDataObject);
+        
         dao.updateDataCommonFields(mockedAbstractDomainObject, mockedAbstractDataObject);
 
-        verify(mockedAbstractDataObject).setEnabled(true);
+        verify(mockedAbstractDataObject).setId(ID);
     }
 
     @Test

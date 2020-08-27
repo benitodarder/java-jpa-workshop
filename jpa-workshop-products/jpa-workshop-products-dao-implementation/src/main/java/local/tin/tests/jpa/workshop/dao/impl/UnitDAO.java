@@ -10,7 +10,7 @@ import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
  *
  * @author benito.darder
  */
-public class UnitDAO extends AbstractDAO<local.tin.tests.jpa.workshop.model.domain.product.Unit, Unit>{
+public class UnitDAO extends AbstractEnableableDAO<local.tin.tests.jpa.workshop.model.domain.product.Unit, Unit>{
 
     public UnitDAO(EntityManagerFactory entityManagerFactory) {
         super(entityManagerFactory);
