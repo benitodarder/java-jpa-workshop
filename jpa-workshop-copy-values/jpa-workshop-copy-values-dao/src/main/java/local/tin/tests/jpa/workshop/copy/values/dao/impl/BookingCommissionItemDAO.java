@@ -3,7 +3,6 @@ package local.tin.tests.jpa.workshop.copy.values.dao.impl;
 import javax.persistence.EntityManagerFactory;
 import local.tin.tests.jpa.workshop.copy.values.dao.CopyValuesDAOFactory;
 import local.tin.tests.jpa.workshop.copy.values.model.data.BookingCommissionItem;
-import local.tin.tests.jpa.workshop.copy.values.model.domain.BookingProductItem;
 import local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException;
 
 /**

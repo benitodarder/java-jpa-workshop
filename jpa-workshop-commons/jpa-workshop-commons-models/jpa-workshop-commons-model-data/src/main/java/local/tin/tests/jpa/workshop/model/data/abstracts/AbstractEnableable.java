@@ -10,7 +10,7 @@ import local.tin.tests.jpa.workshop.model.data.interfaces.IEnableable;
  * @author benitodarder
  */
 @MappedSuperclass
-public abstract class AbstractEnableable implements IEnableable {
+public abstract class AbstractEnableable extends AbstractIdentifiable implements IEnableable {
    
     @Column(name = "enabled")
     private boolean enabled;

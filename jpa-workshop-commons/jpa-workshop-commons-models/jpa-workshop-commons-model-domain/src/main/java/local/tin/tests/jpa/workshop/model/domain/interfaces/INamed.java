@@ -4,7 +4,7 @@ package local.tin.tests.jpa.workshop.model.domain.interfaces;
  *
  * @author benito.darder
  */
-public interface INamed extends IIdentifiable {
+public interface INamed extends IEnableable {
     
     /**
      * Returns the element name

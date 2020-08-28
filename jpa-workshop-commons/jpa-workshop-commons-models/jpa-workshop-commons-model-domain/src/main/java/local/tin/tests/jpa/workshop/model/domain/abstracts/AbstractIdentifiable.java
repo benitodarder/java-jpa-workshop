@@ -7,7 +7,7 @@ import local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable;
  *
  * @author benitodarder
  */
-public abstract class AbstractIdentifiable extends AbstractEnableable implements IIdentifiable {
+public abstract class AbstractIdentifiable extends AbstractDomain implements IIdentifiable {
 
     @Override
     public int hashCode() {

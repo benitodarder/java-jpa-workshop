@@ -1,6 +1,5 @@
 package local.tin.tests.jpa.workshop.model.domain.abstracts;
 
-import local.tin.tests.jpa.workshop.model.domain.abstracts.AbstractNamed;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;

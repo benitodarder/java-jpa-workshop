@@ -6,7 +6,7 @@ import local.tin.tests.jpa.workshop.model.domain.interfaces.IEnableable;
  *
  * @author benitodarder
  */
-public abstract class AbstractEnableable implements IEnableable {
+public abstract class AbstractEnableable extends AbstractIdentifiable implements IEnableable {
     
     private boolean enabled;
 
