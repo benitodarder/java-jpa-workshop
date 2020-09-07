@@ -60,7 +60,7 @@ public abstract class BookingItem extends AuditInfo implements IIdentifiable {
 
     @Override
     public String toString() {
-        return "BookingItem{" + "id=" + id + ", bookingDate=" + bookingDate + ", cancelDate=" + cancelDate + ", gdStatus=" + gdStatus + ", gdStatusFlowType=" + gdStatusFlowType +  super.toString() + '}';
+        return "BookingItem{" + "id=" + id + ", bookingDate=" + bookingDate + ", cancelDate=" + cancelDate + ", gdStatus=" + gdStatus + ", gdStatusFlowType=" + gdStatusFlowType + ", " +  super.toString() + '}';
     }
     
     
