@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import local.tin.tests.jpa.workshop.copy.values.dao.CopyValuesDAOFactory;
+import local.tin.tests.jpa.workshop.copy.values.dao.interfaces.IBookingProductDAO;
 import local.tin.tests.jpa.workshop.copy.values.model.data.BookingCommissionItem;
 import local.tin.tests.jpa.workshop.copy.values.model.data.BookingProductItem;
 import local.tin.tests.jpa.workshop.dao.utils.CommonDAOUtils;
