@@ -37,3 +37,8 @@ hs_err_pid*
 /jpa-workshop-copy-values/jpa-workshop-copy-values-model-data/target/
 /jpa-workshop-copy-values/jpa-workshop-copy-values-app/target/
 /jpa-workshop-copy-values/jpa-workshop-copy-values-dao/target/
+/jpa-workshop-products/jpa-workshop-jpa-providesr-app/target/
+/jpa-workshop-products/jpa-workshop-jpa-providers-dao-implementation/target/
+/jpa-workshop-products/jpa-workshop-jpa-providers-app/target/
+/jpa-workshop-products/jpa-workshop-jpa-providers-model-data/target/
+/jpa-workshop-products/jpa-workshop-jpa-providers-model-domain/target/

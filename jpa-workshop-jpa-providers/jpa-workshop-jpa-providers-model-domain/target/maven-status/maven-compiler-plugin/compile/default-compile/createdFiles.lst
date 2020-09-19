@@ -1,0 +1,9 @@
+local\tin\tests\jpa\workshop\model\domain\abstracts\AbstractProduct.class
+local\tin\tests\jpa\workshop\model\domain\deserializers\AssemblyDeserializer.class
+local\tin\tests\jpa\workshop\model\domain\compositeIds\AssemblyId.class
+local\tin\tests\jpa\workshop\model\domain\product\Unit.class
+local\tin\tests\jpa\workshop\model\domain\abstracts\AbstractNamedProduct.class
+local\tin\tests\jpa\workshop\model\domain\product\Assembly.class
+local\tin\tests\jpa\workshop\model\domain\product\Component.class
+local\tin\tests\jpa\workshop\model\domain\deserializers\AssemblyIdDeserializer.class
+local\tin\tests\jpa\workshop\model\domain\product\Product.class

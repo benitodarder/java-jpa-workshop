@@ -27,5 +27,9 @@ Query: ReadAllQuery(referenceClass=MasterFromBase sql="SELECT t0.ID, t0.DTYPE, t
 
 Schemas for Hsqldb provided.
 
+Sample launch command:
+
+* java -cp c:\Programs\hsqldb\hsqldb-2.5.1\hsqldb\lib\hsqldb.jar org.hsqldb.Server -silent false -database.0 file:D:\Development\databases\hsqldb\2.5.1\copiaValors\copiaValors.db -dbname.0 copiaValors
+
 
 
