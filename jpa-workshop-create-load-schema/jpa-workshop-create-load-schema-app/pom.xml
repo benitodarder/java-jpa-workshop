@@ -12,7 +12,7 @@
         <relativePath>../jpa-workshop-create-load-schema-root/pom.xml</relativePath>
     </parent>
     <properties>
-        <mainClass>local.tin.tests.jpa.workshop.products.app.ProductsApp</mainClass>
+        <mainClass>local.tin.tests.jpa.workshop.create.load.schema.app.ProductsApp</mainClass>
     </properties>     
     <dependencies>
         <dependency>

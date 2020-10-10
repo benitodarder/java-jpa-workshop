@@ -1,4 +1,4 @@
-package local.tin.tests.jpa.workshop.products.app;
+package local.tin.tests.jpa.workshop.create.load.schema.app;
 
 import java.io.IOException;
 import java.util.List;
