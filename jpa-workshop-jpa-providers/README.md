@@ -1,4 +1,4 @@
-# jpa-workshop-products
+# jpa-workshop-jpa-providers
 
 Sample console application to retrieve data from a sample database, to show 
 how to use different JPA providers.
