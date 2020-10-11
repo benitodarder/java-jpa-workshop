@@ -21,7 +21,7 @@ public abstract class Base extends AbstractNamed {
     
     @Id
     @GeneratedValue(generator = "base_sequence_generator")
-    @SequenceGenerator(name = "base_sequence_generator", sequenceName = "seq_base_Id")
+    @SequenceGenerator(name = "base_sequence_generator", sequenceName = "seq_base_Id", allocationSize=1)
     private Integer id;
     @Column(name = "COMMONVALUE")
     private String commonValue;    
