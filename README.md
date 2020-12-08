@@ -9,4 +9,4 @@ Includes:
 
 * jpa-workshop-jpa-providers: Retrieve data from a sample database and show can Hibernate and EclipseLink can be easy swapped
 
-* jpa-workshop-copy-values: Copies data from one table to another one in a hierarchic model. Only runs in Hibernate due to the lack of DiscriminatorColumn
+* jpa-workshop-create-load-schema: Sample console app on Hsqldb in memory. Creates schema and loads sample data on launch

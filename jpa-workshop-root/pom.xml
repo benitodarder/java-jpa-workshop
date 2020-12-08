@@ -7,7 +7,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>../jpa-workshop-commons/jpa-workshop-commons-root</module>
-        <module>../jpa-workshop-copy-values/jpa-workshop-copy-values-root</module>
         <module>../jpa-workshop-jpa-providers/jpa-workshop-jpa-providers-root</module>
         <module>../jpa-workshop-create-load-schema/jpa-workshop-create-load-schema-root</module>
     </modules>
