@@ -83,15 +83,18 @@ public abstract class AbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.
      * Returns a new domain model inistance.
      *
      * @return C0
+     * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
-    protected abstract C0 getDomainObjectNewInstance();
+    protected abstract C0 getDomainObjectNewInstance() throws DAOException;
+    
 
     /**
      * Returns a new data model inistance.
      *
      * @return C1
+     * @throws local.tin.tests.jpa.workshop.model.domain.exceptions.DAOException
      */
-    protected abstract C1 getDataObjectNewInstance();
+    protected abstract C1 getDataObjectNewInstance() throws DAOException;
 
     /**
      * Assigns depth 0 fields from data model to domain model
