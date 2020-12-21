@@ -14,5 +14,6 @@
         <module>jpa-workshop-generic-dao-model-data</module>
         <module>jpa-workshop-generic-dao-model-domain</module>
         <module>jpa-workshop-generic-dao-impl</module>
+        <module>jpa-workshop-generic-dao-app</module>
     </modules>
 </project>

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
 import javax.persistence.EntityManagerFactory;
 import local.tin.tests.jpa.workshop.dao.impl.AbstractDAO;
 import local.tin.tests.jpa.workshop.dao.utils.CommonDAOUtils;
@@ -24,7 +25,7 @@ import org.hibernate.Hibernate;
 public abstract class GenericAbstractDAO<C0 extends local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable, C1 extends local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable> extends AbstractDAO<C0, C1> {
 
     private static final Logger LOGGER = Logger.getLogger(GenericAbstractDAO.class);
-    
+
     protected abstract Class<C0> getDAODomainClass();
 
     public GenericAbstractDAO(EntityManagerFactory entityManagerFactory) {
@@ -73,6 +74,7 @@ public abstract class GenericAbstractDAO<C0 extends local.tin.tests.jpa.workshop
     protected C0 updateDomainObjectDeeperFields(C0 domainObject, C1 dataObject, int depth) throws DAOException {
         Map<String, Field> dataFields = getAllFields(new HashMap<>(), getDAOClass());
         Map<String, Field> domainFields = getAllFields(new HashMap<>(), getDAODomainClass());
+        C1 unproxiedEntity = (C1) Hibernate.unproxy(dataObject);
         for (Map.Entry<String, Field> currentEntry : dataFields.entrySet()) {
             try {
                 if (isDeeperDataField(currentEntry)) {
@@ -80,8 +82,8 @@ public abstract class GenericAbstractDAO<C0 extends local.tin.tests.jpa.workshop
                     Field currentField = domainFields.get(currentEntry.getKey());
                     currentField.setAccessible(true);
                     if (Collection.class.isAssignableFrom(currentEntry.getValue().getType())) {
-                        if (((Collection) currentEntry.getValue().get(dataObject)).stream().findFirst() != Optional.empty()) {
-                            GenericAbstractDAO triggleDAO = (GenericAbstractDAO) GenericDAOFactory.getInstance().getDAO(((Collection) currentEntry.getValue().get(dataObject)).stream().findFirst().get().getClass());
+                        if (((Collection) currentEntry.getValue().get(unproxiedEntity)).stream().findFirst() != Optional.empty()) {
+                            GenericAbstractDAO triggleDAO = (GenericAbstractDAO) GenericDAOFactory.getInstance().getDAO(((Collection) currentEntry.getValue().get(unproxiedEntity)).stream().findFirst().get().getClass());
                             Collection collection = new HashSet<>();
                             for (Object current : (Collection) currentEntry.getValue().get(dataObject)) {
                                 collection.add(triggleDAO.getDomainObject((local.tin.tests.jpa.workshop.model.data.interfaces.IIdentifiable) current, depth));
@@ -147,7 +149,7 @@ public abstract class GenericAbstractDAO<C0 extends local.tin.tests.jpa.workshop
                     Field currentField = dataFields.get(currentEntry.getKey());
                     currentField.setAccessible(true);
                     if (Collection.class.isAssignableFrom(currentEntry.getValue().getType())) {
-                        if (((Collection) currentEntry.getValue().get(domainObject)).stream().findFirst() != Optional.empty()) {
+                        if (((Collection) currentEntry.getValue().get(domainObject)) != null && ((Collection) currentEntry.getValue().get(domainObject)).stream().findFirst() != Optional.empty()) {
                             GenericAbstractDAO triggleDAO = (GenericAbstractDAO) GenericDAOFactory.getInstance().getDAO(((Collection) currentEntry.getValue().get(domainObject)).stream().findFirst().get().getClass());
                             Collection collection = new HashSet<>();
                             for (Object current : (Collection) currentEntry.getValue().get(domainObject)) {
@@ -177,4 +179,23 @@ public abstract class GenericAbstractDAO<C0 extends local.tin.tests.jpa.workshop
         return local.tin.tests.jpa.workshop.model.domain.interfaces.IIdentifiable.class.isAssignableFrom(klass)
                 || Collection.class.isAssignableFrom(klass);
     }
+
+    @Override
+    protected C1 getDataObjectNewInstance() throws DAOException {
+        try {
+            return getDAOClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException ex) {
+            throw new DAOException(ex);
+        }
+    }
+
+    @Override
+    protected C0 getDomainObjectNewInstance() throws DAOException {
+        try {
+            return getDAODomainClass().newInstance();
+        } catch (InstantiationException | IllegalAccessException ex) {
+            throw new DAOException(ex);
+        }
+    }
+
 }

@@ -25,3 +25,4 @@ hs_err_pid*
 **/target/**
 /**/nbactions.xml
 /**/nb-configuration.xml
+/jpa-workshop-generic-dao/jpa-workshop-generic-dao-app/nbproject/private/

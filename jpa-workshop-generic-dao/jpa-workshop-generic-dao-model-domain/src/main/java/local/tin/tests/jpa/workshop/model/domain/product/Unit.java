@@ -63,7 +63,7 @@ public class Unit extends AbstractNamedProduct {
 
     @Override
     public String toString() {
-        return "Unit{" + "id=" + id + ", name=" + getName() + '}';
+        return "Unit{" + "id=" + id + ", name=" + getName() + ", components:[" + components + '}';
     }   
 
     public String getAbbreviation() {
