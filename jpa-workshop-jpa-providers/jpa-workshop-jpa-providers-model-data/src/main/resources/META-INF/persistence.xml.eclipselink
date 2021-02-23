@@ -5,8 +5,11 @@
        <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <!-- Standalone configuration by properties -->
             <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>   
+            <property name="javax.persistence.sql-load-script-source" value="META-INF/sampleValues.sql" />
+            <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:hsql://localhost:9001/products"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:products"/>
             <property name="javax.persistence.jdbc.user" value="SA"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="eclipselink.weaving" value="static"/>
