@@ -75,6 +75,7 @@ public class AbstractDAOTest extends BaseDAOTest {
         dao = new AbstractDAOWrapperWithEmbeddedId(mockedEntityManagerFactory);
         reset(mockedLogger);
         pagination = new Pagination(PAGE, PAGE_SIZE);
+        reset(mockedAbstractDomainObject);
     }
 
     @Test
