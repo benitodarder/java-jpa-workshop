@@ -1,4 +1,4 @@
-# jpa-workshop
+# java-jpa-workshop
 
 Some concept proofs and tests for JPA using different providers:
 
